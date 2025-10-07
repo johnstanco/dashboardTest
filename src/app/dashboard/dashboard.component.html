@@ -1,0 +1,114 @@
+<div class="min-h-screen grid grid-cols-[260px_1fr]">
+    <!-- Sidebar -->
+    <aside class="hidden md:flex flex-col bg-white shadow-soft border-r border-gray-100 p-4 gap-4">
+      <div class="flex items-center gap-3 px-2">
+        <i class="pi pi-angel-left text-primary-500 text-xl"></i>
+        <span class="font-bold">Fabrizio Dashboard</span>
+      </div>
+  
+      <nav class="text-sm">
+        <ul class="space-y-1">
+          <li><a class="flex items-center gap-2 rounded-lg px-3 py-2 bg-primary-500/10 text-primary-700" href="#"><i class="pi pi-home"></i>Dashboard</a></li>
+          <li><a class="flex items-center gap-2 rounded-lg px-3 py-2 hover:bg-gray-100" href="#"><i class="pi pi-images"></i>Icons</a></li>
+          <li><a class="flex items-center gap-2 rounded-lg px-3 py-2 hover:bg-gray-100" href="#"><i class="pi pi-map"></i>Maps</a></li>
+          <li><a class="flex items-center gap-2 rounded-lg px-3 py-2 hover:bg-gray-100" href="#"><i class="pi pi-bell"></i>Notifications</a></li>
+          <li><a class="flex items-center gap-2 rounded-lg px-3 py-2 hover:bg-gray-100" href="#"><i class="pi pi-user"></i>User Profile</a></li>
+          <li><a class="flex items-center gap-2 rounded-lg px-3 py-2 hover:bg-gray-100" href="#"><i class="pi pi-table"></i>Table List</a></li>
+        </ul>
+      </nav>
+    </aside>
+  
+    <!-- Main -->
+    <main class="flex flex-col">
+      <!-- Topbar -->
+      <header class="h-14 flex items-center justify-between bg-white border-b border-gray-100 px-4">
+        <div class="text-sm text-gray-500">Dashboard</div>
+        <div class="flex items-center gap-3">
+          <span class="relative">
+            <i class="pi pi-bell text-gray-500"></i>
+            <span class="absolute -top-2 -right-2"><p-badge value="3"></p-badge></span>
+          </span>
+          <p-avatar icon="pi pi-user" shape="circle" size="normal"></p-avatar>
+        </div>
+      </header>
+  
+      <section class="p-4 space-y-4">
+        <!-- Stat cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+          <p-card class="rounded-card">
+            <ng-template pTemplate="header">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-primary-600"><i class="pi pi-globe"></i><span>Capacity</span></div>
+                <span class="text-xs text-gray-400">Update Now</span>
+              </div>
+            </ng-template>
+            <div class="text-2xl font-bold">{{ capacity() }}GB</div>
+          </p-card>
+  
+          <p-card class="rounded-card">
+            <ng-template pTemplate="header">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-emerald-600"><i class="pi pi-money-bill"></i><span>Revenue</span></div>
+                <span class="text-xs text-gray-400">Last day</span>
+              </div>
+            </ng-template>
+            <div class="text-2xl font-bold">${{ revenue() | number:'1.0-0' }}</div>
+          </p-card>
+  
+          <p-card class="rounded-card">
+            <ng-template pTemplate="header">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-orange-500"><i class="pi pi-sitemap"></i><span>Errors</span></div>
+                <span class="text-xs text-gray-400">In the last hour</span>
+              </div>
+            </ng-template>
+            <div class="text-2xl font-bold">{{ errors() }}</div>
+          </p-card>
+  
+          <p-card class="rounded-card">
+            <ng-template pTemplate="header">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-sky-500"><i class="pi pi-heart"></i><span>Followers</span></div>
+                <span class="text-xs text-gray-400">Update now</span>
+              </div>
+            </ng-template>
+            <div class="text-2xl font-bold">+{{ followers() | number }}</div>
+          </p-card>
+        </div>
+  
+        <!-- Area chart big -->
+        <p-card class="rounded-card">
+          <ng-template pTemplate="header">
+            <div class="text-sm text-gray-500">Users Behavior <span class="text-xs">(24 Hours Performance)</span></div>
+          </ng-template>
+          <div class="h-[46vh]">
+            <p-chart class="h-100" type="line" [data]="areaData()" [options]="areaOptions()"></p-chart>
+          </div>
+          <ng-template pTemplate="footer">
+            <div class="text-xs text-gray-400">Updated 3 minutes ago</div>
+          </ng-template>
+        </p-card>
+  
+        <!-- Bottom charts -->
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+          <p-card class="rounded-card">
+            <ng-template pTemplate="header">
+              <div class="text-sm text-gray-500">Email Statistics <span class="text-xs">(Last Campaign Performance)</span></div>
+            </ng-template>
+            <div class="h-[34vh]">
+              <p-chart type="pie" [data]="pieData()" [options]="pieOptions"></p-chart>
+            </div>
+          </p-card>
+  
+          <p-card class="rounded-card">
+            <ng-template pTemplate="header">
+              <div class="text-sm text-gray-500">NASDAQ: AAPL <span class="text-xs">(Line Chart With Points)</span></div>
+            </ng-template>
+            <div class="h-[34vh]">
+              <p-chart class="h-80" type="line" [data]="lineData()" [options]="lineOptions"></p-chart>
+            </div>
+          </p-card>
+        </div>
+      </section>
+    </main>
+  </div>

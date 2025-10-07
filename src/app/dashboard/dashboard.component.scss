@@ -1,0 +1,12 @@
+/* arrotondamenti e card look */
+.rounded-card .p-card {
+    border-radius: var(--card-radius);
+  }
+  
+  .rounded-card .p-card-body { padding-top: 0.5rem; }
+  .rounded-card .p-card-content { padding-top: 0.25rem; }
+  
+  /* nascondi sidebar su mobile */
+  @media (max-width: 767px) {
+    :host .grid { grid-template-columns: 1fr; }
+  }
